@@ -1,0 +1,22 @@
+﻿@model ArticleModel
+
+@{
+	ViewBag.Title = "Article";
+}
+
+<div class="article" data-productid="@Model.Id">
+	<div class="article-name">
+		<h2>
+			@Model.Name
+		</h2>
+	</div>
+	<div class="article-description">
+		@Model.Description
+	</div>
+	<div class="article-price">
+		<h3>@string.Format("{0:c}", Model.Price)</h3>
+	</div>
+</div>
+<div class="cmd-buttons">
+	@Html.ActionLink("Go to List", "Index", "Home")
+</div>

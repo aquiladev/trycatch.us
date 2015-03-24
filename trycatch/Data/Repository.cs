@@ -24,7 +24,7 @@ namespace trycatch.Data
 			return Entities;
 		}
 
-		public T Find(Guid id)
+		public T Find(int id)
 		{
 			return Entities.Find(id);
 		}
@@ -61,11 +61,6 @@ namespace trycatch.Data
 
 			Entities.Remove(entity);
 			_context.SaveChanges();
-		}
-
-		private string GetEntityName()
-		{
-			return string.Format("{0}.{1}", _context.ObjectContext.DefaultContainerName, typeof(T).Name);
 		}
 	}
 }

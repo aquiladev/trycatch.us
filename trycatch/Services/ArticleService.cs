@@ -14,9 +14,14 @@ namespace trycatch.Services
 			_articleRepository = articleRepository;
 		}
 
-		public IQueryable<Article> Get()
+		public IQueryable<Article> GetAll()
 		{
 			return _articleRepository.GetAll();
+		}
+
+		public Article Get(int id)
+		{
+			return _articleRepository.Find(id);
 		}
 	}
 }

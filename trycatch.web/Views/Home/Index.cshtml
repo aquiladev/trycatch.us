@@ -1,4 +1,18 @@
-﻿@{
+﻿@model HomepageModel
+@{
 	ViewBag.Title = "IList<Articles>";
 }
 
+<div class="page page-home">
+	@if (Model.Articles.Count > 0)
+	{
+		<div class="article-list">
+			@foreach (var article in Model.Articles)
+			{
+				<div class="article">
+					@Html.Partial("_Article", article)
+				</div>
+			}
+		</div>
+	}
+</div>

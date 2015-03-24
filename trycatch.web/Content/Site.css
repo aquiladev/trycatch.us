@@ -22,3 +22,25 @@ select,
 textarea {
 	max-width: 280px;
 }
+
+.page-home {
+	padding-top: 20px;
+}
+
+.article-list {
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+
+	.article-list .article-item {
+		text-align: center;
+		margin: 10px 5px;
+		width: 220px;
+		height: 200px;
+		float: left;
+		background: #eee;
+	}

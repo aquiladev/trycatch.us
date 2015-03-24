@@ -4,7 +4,7 @@ using Owin;
 [assembly: OwinStartupAttribute(typeof(trycatch.web.Startup))]
 namespace trycatch.web
 {
-	public partial class Startup
+	public class Startup
 	{
 		public void Configuration(IAppBuilder app)
 		{

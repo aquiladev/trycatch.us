@@ -1,21 +1,20 @@
 ﻿using System.Web.Mvc;
-using trycatch.Services;
+using trycatch.web.ViewModelBuilders;
 
 namespace trycatch.web.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ArticleService _articleService;
+		private readonly HomepageModelBuilder _viewModelBuilder;
 
-		public HomeController(ArticleService articleService)
+		public HomeController(HomepageModelBuilder viewModelBuilder)
 		{
-			_articleService = articleService;
+			_viewModelBuilder = viewModelBuilder;
 		}
 
 		public ActionResult Index()
 		{
-			var d = _articleService.Get();
-			return View();
+			return View(_viewModelBuilder.Build());
 		}
 	}
 }

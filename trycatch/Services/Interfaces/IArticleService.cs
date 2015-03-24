@@ -5,6 +5,7 @@ namespace trycatch.Services.Interfaces
 {
 	public interface IArticleService
 	{
-		IQueryable<Article> Get();
+		IQueryable<Article> GetAll();
+		Article Get(int id);
 	}
 }

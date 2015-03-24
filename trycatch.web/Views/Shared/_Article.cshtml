@@ -1,0 +1,12 @@
+﻿@model ArticleOverviewModel
+
+<div class="article-item" data-productid="@Model.Id">
+	<div class="article-name">
+		<h3>
+			<a href="@Url.Action("Index", "Article", new {id = Model.Id})">@Model.Name</a>
+		</h3>
+	</div>
+	<div class="article-price">
+		<h4>@string.Format("{0:c}", Model.Price)</h4>
+	</div>
+</div>
