@@ -23,7 +23,8 @@ textarea {
 	max-width: 280px;
 }
 
-.page-home {
+.page-home,
+.page-cart {
 	padding-top: 20px;
 }
 
@@ -44,3 +45,79 @@ textarea {
 		float: left;
 		background: #eee;
 	}
+
+.bar-notification {
+	display: none;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100000;
+}
+
+	.bar-notification.success {
+		background: none repeat scroll 0 0 cadetblue;
+		color: #FFFFFF;
+		margin: 0 0 10px;
+	}
+
+	.bar-notification.error {
+		background: none repeat scroll 0 0 indianred;
+		color: #FFFFFF;
+		margin: 0 0 10px;
+	}
+
+	.bar-notification .close {
+		float: right;
+		margin: 9px 9px 0 0;
+		cursor: pointer;
+	}
+
+	.bar-notification p.content {
+		padding: 10px;
+	}
+
+		.bar-notification p.content a {
+			text-decoration: underline;
+			color: #FFFFFF;
+		}
+
+			.bar-notification p.content a:hover {
+				text-decoration: none;
+				color: #FFFFFF;
+			}
+
+.navbar-cart {
+	float: right;
+	color: #999999;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	margin-right: 15px;
+}
+
+.cart-items table {
+	width: 100%;
+}
+
+	.cart-items table tr {
+		border-bottom: 1px solid #eee;
+	}
+
+	.cart-items table td {
+		padding: 5px 0;
+	}
+
+.cart-summary {
+	display: inline-block;
+	width: 100%;
+}
+
+	.cart-summary .cart-totalize {
+		float: right;
+	}
+
+.page-cart .cell-price {
+	width: 100px;
+	text-align: right;
+}

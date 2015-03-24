@@ -21,6 +21,8 @@ namespace trycatch.Data
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Configurations.Add(new ArticleMap());
+			modelBuilder.Configurations.Add(new CustomerMap());
+			modelBuilder.Configurations.Add(new ShoppingCartItemMap());
 
 			base.OnModelCreating(modelBuilder);
 		}

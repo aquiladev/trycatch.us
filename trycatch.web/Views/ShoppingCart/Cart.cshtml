@@ -1,0 +1,42 @@
+﻿@model ShoppingCartModel
+@{
+	ViewBag.Title = "Cart";
+}
+
+<div class="page page-cart">
+	@if (Model.Items.Count > 0)
+	{
+		<div class="cart-items">
+			<table>
+				@foreach (var item in Model.Items)
+				{
+					<tr>
+						<td>@item.ArticleName</td>
+						<td class="cell-price">@string.Format("{0:c}", item.ArticlePrice)</td>
+					</tr>
+				}
+			</table>
+		</div>
+		<div class="cart-summary">
+			<div class="cart-totalize">
+				<table>
+					<tr>
+						<td>Sub total excluding VAT:</td>
+						<td class="cell-price">@string.Format("{0:c}", Model.SubTotal)</td>
+					</tr>
+					<tr>
+						<td>Total VAT(30%):</td>
+						<td class="cell-price">@string.Format("{0:c}", Model.TotalVat)</td>
+					</tr>
+					<tr>
+						<td>Total including VAT:</td>
+						<td class="cell-price">@string.Format("{0:c}", Model.Total)</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	}
+	<div class="cmd-buttons">
+		@Html.ActionLink("Order", "SaveOrder", "Order")
+	</div>
+</div>

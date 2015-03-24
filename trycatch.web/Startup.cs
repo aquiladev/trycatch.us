@@ -9,7 +9,6 @@ namespace trycatch.web
 		public void Configuration(IAppBuilder app)
 		{
 			InjectorInitializer.Initialize(app);
-			//ConfigureAuth(app);
 		}
 	}
 }

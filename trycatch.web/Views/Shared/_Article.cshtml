@@ -1,4 +1,7 @@
 ﻿@model ArticleOverviewModel
+@{
+	string addtocartlink = Url.Action("AddToCart", "ShoppingCart", new { articleId = Model.Id });
+}
 
 <div class="article-item" data-productid="@Model.Id">
 	<div class="article-name">
@@ -8,5 +11,8 @@
 	</div>
 	<div class="article-price">
 		<h4>@string.Format("{0:c}", Model.Price)</h4>
+	</div>
+	<div class="buttons">
+		<input type="button" class="add-to-cart-button" onclick="trycatchCart.addtocart('@addtocartlink'); return false;" value="Add to Cart" />
 	</div>
 </div>

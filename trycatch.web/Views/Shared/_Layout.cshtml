@@ -14,9 +14,13 @@
 			<div class="navbar-header">
 				@Html.ActionLink("trycatch.us", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 			</div>
+			@Html.ActionLink("Cart" , "Cart", "ShoppingCart", new { area = "" }, new { @class = "navbar-cart" })
 		</div>
 	</div>
 	<div class="container body-content">
+		<div id="bar-notification" class="bar-notification">
+			<span class="close" title="close">Close</span>
+		</div>
 		@RenderBody()
 		<hr />
 		<footer>
@@ -26,6 +30,7 @@
 
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/trycatch")
 	@RenderSection("scripts", required: false)
 </body>
 </html>

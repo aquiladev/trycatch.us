@@ -17,7 +17,7 @@ namespace trycatch.web.ViewModelBuilders
 		public HomepageModel Build()
 		{
 			var articles = _articleService.GetAll()
-				.Take(() => 20)
+				.Take(() => 12)
 				.Select(x => new ArticleOverviewModel
 				{
 					Id = x.Id,

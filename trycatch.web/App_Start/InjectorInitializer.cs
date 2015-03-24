@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using Owin;
 using SimpleInjector;
@@ -28,9 +29,15 @@ namespace trycatch.web
 
 			container.RegisterSingle(app);
 
-			container.Register<IDbContext, DataContext>();
-			container.Register<IRepository<Article>, Repository<Article>>();
+			container.RegisterPerWebRequest<HttpContextBase>(() => new HttpContextWrapper(HttpContext.Current));
+
+			container.RegisterPerWebRequest<IDbContext, DataContext>();
+			container.RegisterPerWebRequest<IRepository<Article>, Repository<Article>>();
+			container.RegisterPerWebRequest<IRepository<Customer>, Repository<Customer>>();
+			container.RegisterPerWebRequest<IRepository<ShoppingCartItem>, Repository<ShoppingCartItem>>();
 			RegisterNamespace(container, typeof(IArticleService).Assembly, "trycatch.Services");
+
+			container.Register<IWorkContext, WorkContext>();
 
 			container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 			container.RegisterMvcIntegratedFilterProvider();
