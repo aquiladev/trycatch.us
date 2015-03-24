@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using Owin;
 using SimpleInjector;
-using SimpleInjector.Integration.Web.Mvc;
 using trycatch.Data;
 using trycatch.Domain;
 using trycatch.Services.Interfaces;
@@ -18,7 +18,8 @@ namespace trycatch.web
 			var container = CreateContainer(app);
 			container.Verify();
 
-			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+			DependencyResolver.SetResolver(new SimpleInjector.Integration.Web.Mvc.SimpleInjectorDependencyResolver(container));
+			GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjector.Integration.WebApi.SimpleInjectorWebApiDependencyResolver(container);
 
 			return container;
 		}
@@ -41,6 +42,7 @@ namespace trycatch.web
 
 			container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 			container.RegisterMvcIntegratedFilterProvider();
+			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
 			return container;
 		}

@@ -24,7 +24,8 @@ textarea {
 }
 
 .page-home,
-.page-cart {
+.page-cart,
+.backbone-content {
 	padding-top: 20px;
 }
 
@@ -121,3 +122,102 @@ textarea {
 	width: 100px;
 	text-align: right;
 }
+
+.overview-bottom {
+	background-color: #eef1f5;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	margin-top: 39px;
+}
+
+	.overview-bottom .pagination {
+		height: 32px;
+		text-align: center;
+	}
+
+		.overview-bottom .pagination ul {
+			display: inline-block;
+			*display: inline;
+			margin: 0;
+			*zoom: 1;
+		}
+
+			.overview-bottom .pagination ul > li {
+				display: inline;
+			}
+
+				.overview-bottom .pagination ul > li > span {
+					-webkit-border-radius: 4px;
+					-moz-border-radius: 4px;
+					border-radius: 4px;
+					float: left;
+					margin: 0 5px;
+					text-align: center;
+					list-style: none;
+				}
+
+			.overview-bottom .pagination ul > .active > span {
+				width: auto;
+				min-width: 30px;
+				height: 30px;
+				max-height: 30px;
+				line-height: 32px;
+				background-color: white;
+				-moz-box-shadow: 0 3px 0 #c0c8cf;
+				-webkit-box-shadow: 0 3px 0 #c0c8cf;
+				box-shadow: 0 3px 0 #c0c8cf;
+				cursor: pointer;
+			}
+
+				.overview-bottom .pagination ul > .active > span:hover {
+					background-color: #808D96;
+					color: white;
+				}
+
+			.overview-bottom .pagination ul > .page > span {
+				cursor: pointer;
+			}
+
+				.overview-bottom .pagination ul > .page > span:hover {
+					background-color: #808D96;
+					color: white;
+				}
+
+			.overview-bottom .pagination ul > .ellipse-page > span {
+				margin: 0;
+			}
+
+			.overview-bottom .pagination ul > .disabled > span {
+				width: auto;
+				min-width: 30px;
+				height: 30px;
+				max-height: 30px;
+				line-height: 32px;
+				cursor: default;
+				background-color: #dee4ec;
+			}
+
+			.overview-bottom .pagination ul > .current-page > span {
+				background-color: #808D96;
+				color: white;
+			}
+
+			.overview-bottom .pagination ul > .page > span,
+			.overview-bottom .pagination ul > .page > span:hover,
+			.overview-bottom .pagination ul > .current-page > span {
+				width: auto;
+				height: 27px;
+				min-width: 27px;
+				max-height: 27px;
+				line-height: 27px;
+				margin: 3px 5px;
+			}
+
+			.overview-bottom .pagination ul > .text > span {
+				padding: 0 10px;
+			}
+
+			.overview-bottom .pagination ul > .next-page > span {
+				margin: 0 0 0 5px;
+			}

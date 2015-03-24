@@ -1,15 +1,15 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using trycatch.Services;
+using trycatch.Services.Interfaces;
 using trycatch.web.Models;
 
 namespace trycatch.web.ViewModelBuilders
 {
 	public class HomepageModelBuilder
 	{
-		private readonly ArticleService _articleService;
+		private readonly IArticleService _articleService;
 
-		public HomepageModelBuilder(ArticleService articleService)
+		public HomepageModelBuilder(IArticleService articleService)
 		{
 			_articleService = articleService;
 		}

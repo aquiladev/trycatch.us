@@ -25,6 +25,12 @@ namespace trycatch.web
 			bundles.Add(new ScriptBundle("~/bundles/trycatch").Include(
 					  "~/Scripts/trycatch.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/backbone").Include(
+					  "~/Scripts/underscore.js",
+					  "~/Scripts/backbone.js",
+					  "~/Scripts/trycatch.articles.js",
+					  "~/Scripts/trycatch.router.js"));
+
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));

@@ -1,0 +1,147 @@
+﻿@{
+	ViewBag.Title = "List<Articles>";
+}
+<div class="backbone-content"></div>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+	$(function () {
+		'use strict';
+
+		if (window.app === undefined) {
+			window.app = {};
+		}
+
+		window.app = $.extend(window.app, {
+			ViewEl: '.backbone-content',
+			ViewBlock: $('.backbone-content'),
+			PageSize: 10,
+			DisplayedPages: 4,
+			Params: {
+				'$orderby': 'Id',
+				'$count': 'true',
+				'$skip': 0
+			}
+		});
+	});
+
+	$.ajaxPrefilter(function (options, originalOptions, xhr) {
+		options.contentType = 'application/json; odata=verbose';
+		options.headers = $.extend(options.headers || {}, {
+			Accept: 'application/json; odata=verbose'
+		});
+
+		var originalError = originalOptions.error;
+		options.error = function (xhr, textStatus, errorThrown) {
+			if (originalError) {
+				originalError.apply(this, arguments);
+			}
+		};
+
+		var originalSuccess = options.success;
+		if (originalSuccess && originalOptions.type === 'GET') {
+			options.success = function (data) {
+				if (typeof data.value !== 'undefined') {
+					app.ViewBlock.data('metadata', getMetadata(data));
+					originalSuccess(data.value);
+				} else {
+					originalSuccess(data);
+				}
+			};
+		}
+
+		function getMetadata(obj) {
+			var metadata = {};
+			for (var i in obj) {
+				if (i != 'value') {
+					metadata[i] = obj[i];
+				}
+			}
+			return metadata;
+		}
+	});
+</script>
+
+@Scripts.Render("~/bundles/backbone")
+
+<script id="articles-template" type="text/template">
+	<div class="overview">
+		<div class="article-list">
+			<% _.each(this.model.models, function(filter, index) { %>
+			<div class="article">
+				<div class="article-item" data-productid='<%- filter.get("Id") %>'>
+					<div class="article-name">
+						<h3>
+							<a href='#article/<%- filter.get("Id") %>'>
+								<%- filter.get("Name") %>
+							</a>
+						</h3>
+					</div>
+					<div class="article-price">
+						<h4><%- "$" + filter.get("Price") %></h4>
+					</div>
+					<div class="buttons">
+						<input type="button" class="add-to-cart-button" value="Add to Cart" data-id='<%- filter.get("Id") %>' />
+					</div>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+	</div>
+	<div class="overview-bottom">
+		<% if (this.model.getPagesCount() > 1) { %>
+		<div class="pagination">
+			<ul>
+				<% if (this.model.getPages()[0].current) { %>
+					<li class="disabled text"><span>First</span></li>
+					<li class="disabled"><span>&lt;</span></li>
+				<% } else { %>
+					<li class="first-page active text"><span>First</span></li>
+					<li class="prev-page active"><span>&lt;</span></li>
+				<% } %>
+				<% _.each(this.model.getPages(), function(page) { %>
+					<% if (page.current) { %>
+						<li class="current-page"><span><%- page.text %></span></li>
+					<% } else if (page.value === undefined) { %>
+						<li class="ellipse-page"><span><%- page.text %></span></li>
+					<% } else { %>
+						<li class="page"><span><%- page.text %><input type="hidden" value="<%- page.value %>" /></span></li>
+					<% } %>
+				<% }); %>
+				<% if (this.model.getPages()[this.model.getPages().length - 1].current) { %>
+					<li class="disabled"><span>&gt;</span></li>
+					<li class="disabled text"><span>Last</span></li>
+				<% } else { %>
+					<li class="next-page active"><span>&gt;</span></li>
+					<li class="last-page active text"><span>Last</span></li>
+				<% } %>
+			</ul>
+		</div>
+		<% } %>
+	</div>
+</script>
+
+<script id="article-template" type="text/template">
+	<div class="article" data-productid='<%- Id %>'>
+		<div class="article-name">
+			<h2>
+				<%- Name %>
+			</h2>
+		</div>
+		<div class="article-description">
+			<%- Description %>
+		</div>
+		<div class="article-price">
+			<h3><%- "$" + Price %></h3>
+		</div>
+	</div>
+	<div class="buttons">
+		<input type="button" class="add-to-cart-button" onclick="trycatchCart.addtocart('/ShoppingCart/AddToCart?articleId=<%- Id %>'); return false;" value="Add to Cart">
+	</div>
+	<div class="links">
+		<a href="#">
+			<span>Back to overview</span>
+		</a>
+	</div>
+</script>

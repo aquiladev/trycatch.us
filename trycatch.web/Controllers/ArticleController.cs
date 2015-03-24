@@ -15,6 +15,11 @@ namespace trycatch.web.Controllers
 			_articleService = articleService;
 		}
 
+		public ActionResult Overview()
+		{
+			return View();
+		}
+
 		public ActionResult Index(int id)
 		{
 			var article = _articleService.Get(id);
